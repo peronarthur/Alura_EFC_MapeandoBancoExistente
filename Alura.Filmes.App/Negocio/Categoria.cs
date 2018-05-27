@@ -14,5 +14,10 @@ namespace Alura.Filmes.App.Negocio
         {
             Filmes = new List<FilmeCategoria>();
         }
+
+        public override string ToString()
+        {
+            return $"Categoria ({Id}): {Nome}";
+        }
     }
 }
