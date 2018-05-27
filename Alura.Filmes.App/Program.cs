@@ -14,11 +14,17 @@ namespace Alura.Filmes.App
             using (var contexto = new AluraFilmesContexto())
             {
                 contexto.LogSQLToConsole();
-
-                
-                foreach (var filme in contexto.Filmes)
+                                
+                foreach (var item in contexto.Elenco)
                 {
-                    Console.WriteLine(filme);
+                    //Pega a entidade
+                    var entidade = contexto.Entry(item);
+                    //Pega a shadow property
+                    var filmId = entidade.Property("film_id").CurrentValue;
+                    //Pega a shadow property
+                    var actorId = entidade.Property("actor_id").CurrentValue;
+
+                    Console.WriteLine($"FilmId: {filmId} - ActorId: {actorId}");
                 }
 
             }

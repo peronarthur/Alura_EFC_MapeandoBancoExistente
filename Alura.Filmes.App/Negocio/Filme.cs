@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Alura.Filmes.App
+namespace Alura.Filmes.App.Negocio
 {
     public class Filme
     {
