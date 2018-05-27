@@ -26,6 +26,20 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("getdate()");
 
+            ///Criando a chave estrangeira entre
+            ///FilmeAtor e Filme na coluna film_id
+            builder
+                .HasOne(x => x.Filme)
+                .WithMany(x => x.Atores)
+                .HasForeignKey("film_id");
+
+            ///Criando a chave estrangeira entre
+            ///FilmeAtor e Ator na coluna actor_id
+            builder
+                .HasOne(x => x.Ator)
+                .WithMany(x => x.Filmografia)
+                .HasForeignKey("actor_id");
+
         }
     }
 }

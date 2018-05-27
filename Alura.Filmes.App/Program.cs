@@ -14,18 +14,45 @@ namespace Alura.Filmes.App
             using (var contexto = new AluraFilmesContexto())
             {
                 contexto.LogSQLToConsole();
-                                
-                foreach (var item in contexto.Elenco)
-                {
-                    //Pega a entidade
-                    var entidade = contexto.Entry(item);
-                    //Pega a shadow property
-                    var filmId = entidade.Property("film_id").CurrentValue;
-                    //Pega a shadow property
-                    var actorId = entidade.Property("actor_id").CurrentValue;
 
-                    Console.WriteLine($"FilmId: {filmId} - ActorId: {actorId}");
+                var filme = contexto
+                    .Filmes
+                    .Include(f=> f.Atores)
+                    .ThenInclude(x=> x.Ator)
+                    .FirstOrDefault(x=> x.Id == 2);
+
+                Console.WriteLine(filme);
+                Console.WriteLine("Elenco:");
+
+                //foreach (var item in contexto.Elenco)
+                //{
+                //    //Pega a entidade
+                //    var entidade = contexto.Entry(item);
+                //    //Pega a shadow property
+                //    var filmId = entidade.Property("film_id").CurrentValue;
+                //    //Pega a shadow property
+                //    var actorId = entidade.Property("actor_id").CurrentValue;
+
+                //    Console.WriteLine($"FilmId: {filmId} - ActorId: {actorId}");
+                //}
+
+                foreach (var ator in filme.Atores)
+                {
+                    Console.WriteLine($"Ator: {ator.Ator.PrimeiroNome} {ator.Ator.UltimoNome}");
                 }
+
+                var categoria = contexto
+                    .Filmes
+                    .Include(x => x.Categorias)
+                    .ThenInclude(y => y.Categoria)
+                    .FirstOrDefault(x=> x.Id == filme.Id);
+
+                Console.WriteLine("Categoria");
+                foreach (var c in categoria.Categorias)
+                {
+                    Console.WriteLine($"Categoria: {c.Categoria.Id} - {c.Categoria.Nome}");
+                }
+
 
             }
         }
