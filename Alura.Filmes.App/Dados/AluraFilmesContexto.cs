@@ -1,12 +1,12 @@
 ﻿using Alura.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Alura.Filmes.App.Dados
 {
     public class AluraFilmesContexto : DbContext
     {
         public DbSet<Ator> Atores { get; set; }
+        public DbSet<Filme> Filmes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,36 +16,11 @@ namespace Alura.Filmes.App.Dados
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<Ator>()
-                .ToTable("actor");
-
-            modelBuilder
-                .Entity<Ator>()
-                .Property(x => x.Id)
-                .HasColumnName("actor_id");
-
-            modelBuilder
-                .Entity<Ator>()
-                .Property(x => x.PrimeiroNome)
-                .IsRequired()
-                .HasColumnType("varchar(45)")
-                .HasColumnName("first_name");
-
-            modelBuilder
-                .Entity<Ator>()
-                .Property(x => x.UltimoNome)
-                .IsRequired()
-                .HasColumnType("varchar(45)")                
-                .HasColumnName("last_name");
-            modelBuilder
-                .Entity<Ator>()
-                .Property<DateTime>("last_update")
-                .HasColumnType("datetime")
-                .HasDefaultValueSql("getdate()")
-                .IsRequired();
-
-
+            ///Isolar a configuração em arquivos de configuração, ajuda a deixar tudas as configurações
+            ///de todas as tabelas misturadas
+            modelBuilder.ApplyConfiguration(new AtorConfiguration());
+            modelBuilder.ApplyConfiguration(new FilmeConfiguration());
+            
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -15,6 +15,21 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
+                
+                foreach (var filme in contexto.Filmes)
+                {
+                    Console.WriteLine(filme);
+                }
+
+            }
+        }
+
+        private static void ListaUltimo10AtoresCadastrados()
+        {
+            using (var contexto = new AluraFilmesContexto())
+            {
+                contexto.LogSQLToConsole();
+
                 //Modificando a shadowProperty
                 //var ator = new Ator();
                 //ator.PrimeiroNome = "Tom";
@@ -33,12 +48,9 @@ namespace Alura.Filmes.App
                     Console.WriteLine(item + " - " + contexto.Entry(item).Property("last_update").CurrentValue);
                 }
 
-
-
                 //contexto.SaveChanges();
 
             }
-            
         }
     }
 }

@@ -125,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dados\AluraFilmesContexto.cs" />
+    <Compile Include="Dados\AtorConfiguration.cs" />
+    <Compile Include="Dados\FilmeConfiguration.cs" />
+    <Compile Include="Filme.cs" />
     <Compile Include="Migrations\20180527142206_inicial.cs" />
     <Compile Include="Migrations\20180527142206_inicial.designer.cs">
       <DependentUpon>20180527142206_inicial.cs</DependentUpon>
