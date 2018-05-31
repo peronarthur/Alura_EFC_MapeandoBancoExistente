@@ -48,6 +48,25 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("getdate()")
                 .IsRequired();
+
+            builder
+                .Property<byte>("language_id")
+                .HasColumnType("tinyint");
+
+            //definindo uma chave estrangueira que aceita nulo
+            builder
+                .Property<byte?>("original_language_id")
+                .HasColumnType("tinyint");
+
+            builder
+                .HasOne(x => x.IdiomaFalado)
+                .WithMany(y => y.FilmesFalados)
+                .HasForeignKey("language_id");
+
+            builder
+                .HasOne(x => x.IdiomaOriginal)
+                .WithMany(y => y.FilmesOriginais)
+                .HasForeignKey("original_language_id");
         }
     }
 }

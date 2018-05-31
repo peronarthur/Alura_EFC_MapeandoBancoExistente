@@ -5,24 +5,23 @@ using System;
 
 namespace Alura.Filmes.App.Dados
 {
-    internal class FilmeCategoriaConfiguration : IEntityTypeConfiguration<FilmeCategoria>
+    public class IdiomaConfiguration : IEntityTypeConfiguration<Idioma>
     {
-        public void Configure(EntityTypeBuilder<FilmeCategoria> builder)
+        public void Configure(EntityTypeBuilder<Idioma> builder)
         {
             builder
-                .ToTable("film_category");
+                .ToTable("language");
 
             builder
-                .Property(x => x.FilmeId)
-                .HasColumnName("film_id");
-
-            builder
-                .Property(x => x.CategoriaId)
+                .Property(x => x.Id)
                 .HasColumnType("tinyint")
-                .HasColumnName("category_id");
+                .HasColumnName("language_id");
 
             builder
-                .HasKey(x => new { x.CategoriaId, x.FilmeId });
+                .Property(x => x.Nome)
+                .HasColumnName("name")
+                .HasColumnType("char(20)")
+                .IsRequired() ;
 
             builder
                 .Property<DateTime>("last_update")

@@ -15,11 +15,31 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
+                var idiomas = contexto.Idiomas
+                    .Include(i => i.FilmesFalados);
+
+                foreach (var idioma in idiomas)
+                {
+                    Console.WriteLine(idioma);
+                    foreach (var filme in idioma.FilmesFalados)
+                    {
+                        Console.WriteLine(filme);
+                    }
+                }
+            }
+        }
+
+        private static void BuscaElencoDosFIlmes()
+        {
+            using (var contexto = new AluraFilmesContexto())
+            {
+                contexto.LogSQLToConsole();
+
                 var filme = contexto
                     .Filmes
-                    .Include(f=> f.Atores)
-                    .ThenInclude(x=> x.Ator)
-                    .FirstOrDefault(x=> x.Id == 2);
+                    .Include(f => f.Atores)
+                    .ThenInclude(x => x.Ator)
+                    .FirstOrDefault(x => x.Id == 2);
 
                 Console.WriteLine(filme);
                 Console.WriteLine("Elenco:");
@@ -45,7 +65,7 @@ namespace Alura.Filmes.App
                     .Filmes
                     .Include(x => x.Categorias)
                     .ThenInclude(y => y.Categoria)
-                    .FirstOrDefault(x=> x.Id == filme.Id);
+                    .FirstOrDefault(x => x.Id == filme.Id);
 
                 Console.WriteLine("Categoria");
                 foreach (var c in categoria.Categorias)

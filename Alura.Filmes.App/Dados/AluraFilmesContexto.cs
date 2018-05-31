@@ -10,10 +10,11 @@ namespace Alura.Filmes.App.Dados
         public DbSet<FilmeAtor> Elenco { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<FilmeCategoria> CategoriasFilme { get; set; }
-
+        public DbSet<Idioma> Idiomas { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-GK5FL2O\\SQLEXPRESS;Database=AluraFilmes;user id=sa;pwd=minduin;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-GK5FL2O\\SQLEXPRESS;Database=AluraFilmesTST;user id=sa;pwd=minduin;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -26,6 +27,7 @@ namespace Alura.Filmes.App.Dados
             modelBuilder.ApplyConfiguration(new FilmeAtorConfiguration());
             modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
             modelBuilder.ApplyConfiguration(new FilmeCategoriaConfiguration());
+            modelBuilder.ApplyConfiguration(new IdiomaConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
