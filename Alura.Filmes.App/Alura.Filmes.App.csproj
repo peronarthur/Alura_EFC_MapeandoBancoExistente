@@ -140,6 +140,10 @@
     <Compile Include="Migrations\20180531214157_IndiceAtorUltimoNome.designer.cs">
       <DependentUpon>20180531214157_IndiceAtorUltimoNome.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180531214841_UniqueAtorPrimeiroUltimoNome.cs" />
+    <Compile Include="Migrations\20180531214841_UniqueAtorPrimeiroUltimoNome.designer.cs">
+      <DependentUpon>20180531214841_UniqueAtorPrimeiroUltimoNome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Negocio\Categoria.cs" />
     <Compile Include="Dados\FilmeAtorConfiguration.cs" />
     <Compile Include="Negocio\FilmeCategoria.cs" />
