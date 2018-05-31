@@ -37,6 +37,12 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("getdate()")
                 .IsRequired();
+
+            //Criando um índice em uma coluna que não é chave estrageira
+            //mudando o nome padrão do índice, que por conversão é ix_(nomeTabela)_(nomeColuna)
+            builder
+                .HasIndex(x => x.UltimoNome)
+                .HasName("idx_actor_last_name");
         }
     }
 }
