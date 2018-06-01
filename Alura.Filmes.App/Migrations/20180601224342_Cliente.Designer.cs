@@ -11,9 +11,10 @@ using System;
 namespace Alura.Filmes.App.Migrations
 {
     [DbContext(typeof(AluraFilmesContexto))]
-    partial class AluraFilmesContextoModelSnapshot : ModelSnapshot
+    [Migration("20180601224342_Cliente")]
+    partial class Cliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,48 +196,6 @@ namespace Alura.Filmes.App.Migrations
                     b.HasIndex("FilmeId");
 
                     b.ToTable("film_category");
-                });
-
-            modelBuilder.Entity("Alura.Filmes.App.Negocio.Funcionario", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnName("staff_id");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnName("active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Email")
-                        .HasColumnName("email")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnName("username")
-                        .HasColumnType("varchar(16)");
-
-                    b.Property<string>("PrimeiroNome")
-                        .IsRequired()
-                        .HasColumnName("first_name")
-                        .HasColumnType("varchar(45)");
-
-                    b.Property<string>("Senha")
-                        .HasColumnName("password")
-                        .HasColumnType("varchar(40)");
-
-                    b.Property<string>("UltimoNome")
-                        .IsRequired()
-                        .HasColumnName("last_name")
-                        .HasColumnType("varchar(45)");
-
-                    b.Property<DateTime>("last_update")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime")
-                        .HasComputedColumnSql("getdate()");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("staff");
                 });
 
             modelBuilder.Entity("Alura.Filmes.App.Negocio.Idioma", b =>

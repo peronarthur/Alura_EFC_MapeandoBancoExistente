@@ -9,7 +9,38 @@ namespace Alura.Filmes.App
 {
     class Program
     {
+        ///Entity com herança
+        ///utiliza a classe mais ancestral e mapeia nela todas as colunas da classe filha
+        ///TPH - Table Per Hierarchy == entity core só consegue utilizar esse tipo
+        ///Cria uma tabela por classe concreta 
+        ///TPC - Table Per Concrete Type
+        ///Cria uma tabela por tipo de tabela
+        ///TPT - Table per Type
+        ///Para usar herança, no EFCore, deve-se utilizar como no exemplo:
+        ///remove a tabela pai (Pessoa) do mapeamento e só mapeia as filhas (Cliente, Funcionário)
+
+
         static void Main(string[] args)
+        {
+            using (var contexto = new AluraFilmesContexto())
+            {
+                contexto.LogSQLToConsole();
+
+                Console.WriteLine("Clientes: ");
+                foreach (var cliente in contexto.Clientes)
+                {
+                    Console.WriteLine(cliente);
+                }
+
+                Console.WriteLine("\nFuncionários");
+                foreach (var funcionario in contexto.Funcionarios)
+                {
+                    Console.WriteLine(funcionario);
+                }
+            }
+        }
+
+        private static void ConvertendoEnumParaValor()
         {
             using (var contexto = new AluraFilmesContexto())
             {
@@ -19,22 +50,6 @@ namespace Alura.Filmes.App
 
                 Console.WriteLine(livre.ParaString());
                 Console.WriteLine(livre.ParaString().ParaValor());
-
-
-
-                //var idiomas = contexto.Idiomas
-                //    .Include(i => i.FilmesFalados);
-
-                //foreach (var idioma in idiomas)
-                //{
-                //    Console.WriteLine(idioma);
-                //    foreach (var filme in idioma.FilmesFalados)
-                //    {
-                //        Console.WriteLine(filme);
-                //    }
-                //}
-
-
             }
         }
 

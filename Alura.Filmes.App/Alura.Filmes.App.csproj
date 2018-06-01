@@ -127,6 +127,19 @@
     <Compile Include="Dados\AluraFilmesContexto.cs" />
     <Compile Include="Dados\AtorConfiguration.cs" />
     <Compile Include="Dados\CategoriaConfiguration.cs" />
+    <Compile Include="Dados\ClienteConfiguration.cs" />
+    <Compile Include="Migrations\20180601231219_Heranca.cs" />
+    <Compile Include="Migrations\20180601231219_Heranca.designer.cs">
+      <DependentUpon>20180601231219_Heranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\Funcionario.cs" />
+    <Compile Include="Dados\FuncionarioConfiguration.cs" />
+    <Compile Include="Dados\PessoaConfiguration.cs" />
+    <Compile Include="Migrations\20180601224342_Cliente.cs" />
+    <Compile Include="Migrations\20180601224342_Cliente.designer.cs">
+      <DependentUpon>20180601224342_Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\Cliente.cs" />
     <Compile Include="Dados\IdiomaConfiguration.cs" />
     <Compile Include="Extensions\ClassificacaoIndicativaExtensions.cs" />
     <Compile Include="Migrations\20180531005530_mudancas_ate_agora.cs" />
@@ -165,6 +178,7 @@
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Negocio\FilmeAtor.cs" />
     <Compile Include="Negocio\Idioma.cs" />
+    <Compile Include="Negocio\Pessoa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
