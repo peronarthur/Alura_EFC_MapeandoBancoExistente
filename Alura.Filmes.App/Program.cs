@@ -15,17 +15,26 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                var idiomas = contexto.Idiomas
-                    .Include(i => i.FilmesFalados);
+                var livre = ClassificacaoIndicativa.MaioresQue13;
 
-                foreach (var idioma in idiomas)
-                {
-                    Console.WriteLine(idioma);
-                    foreach (var filme in idioma.FilmesFalados)
-                    {
-                        Console.WriteLine(filme);
-                    }
-                }
+                Console.WriteLine(livre.ParaString());
+                Console.WriteLine(livre.ParaString().ParaValor());
+
+
+
+                //var idiomas = contexto.Idiomas
+                //    .Include(i => i.FilmesFalados);
+
+                //foreach (var idioma in idiomas)
+                //{
+                //    Console.WriteLine(idioma);
+                //    foreach (var filme in idioma.FilmesFalados)
+                //    {
+                //        Console.WriteLine(filme);
+                //    }
+                //}
+
+
             }
         }
 

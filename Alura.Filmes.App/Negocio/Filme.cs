@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alura.Filmes.App.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace Alura.Filmes.App.Negocio
@@ -10,7 +11,15 @@ namespace Alura.Filmes.App.Negocio
         public string Descricao { get; set; }
         public string AnoLancamento { get; set; }
         public Int16 Duracao { get; set; }
-        public string ClassificacaoEtaria { get; set; }
+
+        //Criada essa propriedade pra resolver o problema do banco legado que utiliza string nos valores
+        //e na aplicação utilizar um enum com os tipos
+        public string TextoClassificacao { get; private set; }
+        public ClassificacaoIndicativa ClassificacaoEtaria
+        {
+            get { return TextoClassificacao.ParaValor(); }
+            set { TextoClassificacao = value.ParaString(); }
+        }
 
         public IList<FilmeAtor> Atores { get; set; }
         public IList<FilmeCategoria> Categorias { get; set; }

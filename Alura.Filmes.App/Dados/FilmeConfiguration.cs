@@ -37,12 +37,7 @@ namespace Alura.Filmes.App.Dados
                 .Property(x => x.Duracao)
                 .HasColumnName("length")
                 .HasColumnType("smallint");
-
-            builder
-                .Property(x => x.ClassificacaoEtaria)
-                .HasColumnName("rating")
-                .HasColumnType("varchar(10)");
-
+            
             builder
                 .Property<DateTime>("last_update")
                 .HasColumnType("datetime")
@@ -67,6 +62,17 @@ namespace Alura.Filmes.App.Dados
                 .HasOne(x => x.IdiomaOriginal)
                 .WithMany(y => y.FilmesOriginais)
                 .HasForeignKey("original_language_id");
+
+            ///resolvendo o problema do campo enum para classificação etária
+            builder
+                   .Property(x => x.TextoClassificacao)
+                   .HasColumnName("rating")
+                   .HasColumnType("varchar(10)");
+
+            ///fazendo com que o entity ignore essa propriedade 
+            ///para que ela seja utilizada apenas na aplicação
+            builder
+                .Ignore(x => x.ClassificacaoEtaria);
         }
     }
 }

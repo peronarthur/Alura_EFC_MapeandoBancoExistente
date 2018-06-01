@@ -128,6 +128,7 @@
     <Compile Include="Dados\AtorConfiguration.cs" />
     <Compile Include="Dados\CategoriaConfiguration.cs" />
     <Compile Include="Dados\IdiomaConfiguration.cs" />
+    <Compile Include="Extensions\ClassificacaoIndicativaExtensions.cs" />
     <Compile Include="Migrations\20180531005530_mudancas_ate_agora.cs" />
     <Compile Include="Migrations\20180531005530_mudancas_ate_agora.designer.cs">
       <DependentUpon>20180531005530_mudancas_ate_agora.cs</DependentUpon>
@@ -150,6 +151,7 @@
     </Compile>
     <Compile Include="Negocio\Categoria.cs" />
     <Compile Include="Dados\FilmeAtorConfiguration.cs" />
+    <Compile Include="Negocio\ClassificacaoIndicativa.cs" />
     <Compile Include="Negocio\FilmeCategoria.cs" />
     <Compile Include="Dados\FilmeCategoriaConfiguration.cs" />
     <Compile Include="Dados\FilmeConfiguration.cs" />
