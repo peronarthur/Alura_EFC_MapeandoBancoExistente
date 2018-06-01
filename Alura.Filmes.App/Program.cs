@@ -26,6 +26,60 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
+                //Usando SQL injetado na mão
+                //Ele tem uma limitação, que dessa forma só pode voltar dados de uma coluna e deve conter todas as colunas
+                //da entidade
+                //var sql = @"    
+                //            select a.*
+                //            from actor a
+                //            join (
+
+                //             select top 5 a.actor_id, count(a.actor_id) total
+                //             from actor a 
+                //             join film_actor fa on a.actor_id = fa.actor_id
+                //             group by a.actor_id, a.first_name, a.last_name
+                //             order by total desc
+                //             ) filmes on filmes.actor_id = a.actor_id";
+
+                //var atoresMaisAtuantes = contexto
+                //    .Atores
+                //    .FromSql(sql)
+                //    .Include(x=> x.Filmografia)
+                //    .OrderByDescending(x=> x.Filmografia.Count);
+
+                //Utilizando a view top5_most_starred_actors
+                var sql = @"    
+                            select a.*
+                            from actor a
+                            join top5_most_starred_actors filmes on filmes.actor_id = a.actor_id";
+
+                var atoresMaisAtuantes = contexto
+                    .Atores
+                    .FromSql(sql)
+                    .Include(x => x.Filmografia)
+                    .OrderByDescending(x => x.Filmografia.Count);
+
+                //Usando EF para fazer a query
+                //var atoresMaisAtuantes = contexto
+                //    .Atores
+                //    .Include(x=> x.Filmografia)
+                //    .OrderByDescending(x=> x.Filmografia.Count)
+                //    .Take(5);
+
+                foreach (var ator in atoresMaisAtuantes)
+                {
+                    Console.WriteLine($"O ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmografia.Count} filmes");
+                }
+                
+            }
+        }
+
+        private static void MostrandoClientesEFuncionarios()
+        {
+            using (var contexto = new AluraFilmesContexto())
+            {
+                contexto.LogSQLToConsole();
+
                 Console.WriteLine("Clientes: ");
                 foreach (var cliente in contexto.Clientes)
                 {

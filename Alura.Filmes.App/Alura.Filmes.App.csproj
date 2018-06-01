@@ -132,6 +132,10 @@
     <Compile Include="Migrations\20180601231219_Heranca.designer.cs">
       <DependentUpon>20180601231219_Heranca.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180601234627_View.cs" />
+    <Compile Include="Migrations\20180601234627_View.designer.cs">
+      <DependentUpon>20180601234627_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Negocio\Funcionario.cs" />
     <Compile Include="Dados\FuncionarioConfiguration.cs" />
     <Compile Include="Dados\PessoaConfiguration.cs" />

@@ -16,7 +16,7 @@ namespace Alura.Filmes.App.Dados
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-GK5FL2O\\SQLEXPRESS;Database=AluraFilmesTST;user id=sa;pwd=minduin;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-GK5FL2O\\SQLEXPRESS;Database=AluraFilmes;user id=sa;pwd=minduin;");
             base.OnConfiguring(optionsBuilder);
         }
 
