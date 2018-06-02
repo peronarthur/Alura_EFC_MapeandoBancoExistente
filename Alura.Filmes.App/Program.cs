@@ -3,6 +3,7 @@ using Alura.Filmes.App.Extensions;
 using Alura.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Alura.Filmes.App
@@ -18,9 +19,31 @@ namespace Alura.Filmes.App
         ///TPT - Table per Type
         ///Para usar herança, no EFCore, deve-se utilizar como no exemplo:
         ///remove a tabela pai (Pessoa) do mapeamento e só mapeia as filhas (Cliente, Funcionário)
-
-
+        
         static void Main(string[] args)
+        {
+            using (var contexto = new AluraFilmesContexto())
+            {
+                contexto.LogSQLToConsole();
+
+                var categoria = "Action"; //36
+
+                var paramCategoria = new SqlParameter("catagoria", categoria);
+                var paramTotal = new SqlParameter()
+                {
+                    ParameterName = "@total",
+                    Size = 4,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                contexto.Database
+                    .ExecuteSqlCommand("execute total_actors_from_given_category @catagoria, @total OUT", paramCategoria, paramTotal);
+
+                Console.WriteLine($"O total de atores na categoria {categoria} é de {paramTotal.Value}");
+            }
+        }
+
+        private static void UtilizandoSQLManualParaSubustituirOEntity()
         {
             using (var contexto = new AluraFilmesContexto())
             {
@@ -70,7 +93,7 @@ namespace Alura.Filmes.App
                 {
                     Console.WriteLine($"O ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmografia.Count} filmes");
                 }
-                
+
             }
         }
 
